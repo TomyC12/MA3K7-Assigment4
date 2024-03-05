@@ -1,0 +1,34 @@
+import matplotlib.pyplot as plt
+
+def iterate_formula(x0, m, k):
+    results = []
+    x_values = [0] * (m - 1) + [x0]  # Initialize x_values list with x0
+    n = 0
+    
+    while abs(x_values[m - 1] - x_values[m - 2]) > 0.0001:
+        n += 1
+        skip_prob = sum((m - r) / m * x_values[m - r] for r in range(1, m))
+        xn = 1 - skip_prob
+        results.append((n+1, xn))
+        
+        x_values.append(xn)  # Append current xn to the x_values list
+        x_values.pop(0)      # Remove the oldest value from the x_values list
+        
+    limit = x_values[-1]
+    
+    return results, limit
+
+results_data = []
+
+for m_value in range(2, 101):
+    results, limit = iterate_formula(x0=0.5, m=m_value, k=0)
+    results_data.append((limit, m_value))
+
+limits, m_values = zip(*results_data)
+plt.plot(m_values,limits, linestyle='-')
+
+plt.ylabel('Limit')
+plt.xlabel('m')
+plt.title('Limit vs m')
+plt.grid(True)
+plt.show()
