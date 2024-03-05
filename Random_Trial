@@ -1,0 +1,29 @@
+import random
+
+def simulate_single_trial():
+    current_step = 1
+    sucess = 0
+
+    while current_step < 26:
+        throw_result = random.randint(1, 2)
+        current_step += throw_result
+        if current_step == 25 :
+            sucess += 1
+
+    return sucess
+
+def simulate_multiple_trials(num_trials):
+    successful_trials = 0
+
+    for _ in range(num_trials):
+        land_on_25 = simulate_single_trial()
+        if land_on_25 == 1 :
+            successful_trials += 1
+
+    probability = land_on_25 / num_trials
+    return probability
+
+num_trials = 100
+probability = simulate_multiple_trials(num_trials)
+
+print(f"Probability of landing on step 25 in {num_trials} trials: {probability:.4f}")
