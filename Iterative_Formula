@@ -10,7 +10,7 @@ def print_table(results):
     print("{:<5} {:<10}".format("n", "x_n"))
     print("------------------")
     for n, xn in results:
-        print("{:<5} {:<10}".format(n, xn))
+        print("{:<5} {:<10}".format(n+1, xn))
 
 initial_value = 1
 iterations = 25
