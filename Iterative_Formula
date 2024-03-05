@@ -17,3 +17,16 @@ iterations = 25
 
 results = iterate_formula(initial_value, iterations)
 print_table(results)
+
+import matplotlib.pyplot as plt
+
+def plot_results(results):
+    n_values, xn_values = zip(*results)
+    plt.plot(n_values, xn_values, marker='o', linestyle='-')
+    plt.title('Iteration of the Formula x_n = 1 - 0.5(x_{n-1})')
+    plt.xlabel('n')
+    plt.ylabel('x_n')
+    plt.grid(True)
+    plt.show()
+    
+plot_results(results)
